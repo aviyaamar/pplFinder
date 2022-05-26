@@ -11,15 +11,22 @@ const Favorites = () => {
   const parseLocalS = localS ? JSON.parse(localS) : [];
   const [favorites, setFavorites] = useState(parseLocalS);
 
+
+  //this function responsible on manage the favorite page: namely to delete users from favorite page 
+
   const handleOnClickFavorite = (index) => {
+    //console.log(index);
+    //console.log(favorites);
     let newFavorites = []
-     favorites.forEach(item => {
-         if(favorites[index] != item)
-           newFavorites.push(item);
+     favorites.forEach(user => {
+       console.log(user);
+         if(favorites[index] != user)
+           newFavorites.push(user);
      })
 
 
     setFavorites(newFavorites)
+    //console.log(newFavorites);
     localStorage.setItem("Favorites", JSON.stringify(newFavorites))
   }
 
@@ -27,13 +34,12 @@ const Favorites = () => {
     <H.Content>
           <H.Header>
             <Text size="64px" bold>
-              PplFinder - Favorites
+             Favorites
             </Text>
           </H.Header>
       <S.UserList>
       <S.List>
-        {favorites
-        .map((user, index) => {
+        {favorites.map((user, index) => {
           return (
             <S.User
               key={index}
